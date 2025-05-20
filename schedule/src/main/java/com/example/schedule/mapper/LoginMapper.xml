@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.schedule.mapper.LoginMapper">
+	<!--로그인-->
+	<select id="login" resultType="com.example.schedule.dto.Member" parameterType="com.example.schedule.dto.Member">
+		SELECT id, email FROM member WHERE id=#{id} AND pw=#{pw}
+	</select>
+	
+	<!--로그인 기록 리스트-->
+	<select id="history" resultType="com.example.schedule.dto.LoginHistory">
+		select no, id, logindate from login_history
+	</select>
+	
+	<!--1년 넘게 접속하지 않은 아이디-->
+	<select id="selectIdByDate" resultType="com.example.schedule.dto.LoginHistory">
+		SELECT id FROM login_history WHERE TIMESTAMPDIFF(MONTH,logindate,NOW()) <![CDATA[>]]> 11
+	</select>	
+	
+	<!--아이디에 해당하는 이메일-->
+	<select id="selectEmailById" resultType="string" parameterType="string">
+		select email from member where id=#{id}
+	</select>
+	
+	<!--로그인 시 로그인기록-->
+	<insert id="insertLoginHistory" parameterType="com.example.schedule.dto.Member">
+		insert into login_history(id) VALUES(#{id})
+	</insert>
+	
+	<!--휴면계정 전환-->
+	<update id="updateActive" parameterType="com.example.schedule.dto.Member">
+		UPDATE member SET ACTIVE ='OFF' WHERE id= #{id}
+	</update>
+</mapper>
