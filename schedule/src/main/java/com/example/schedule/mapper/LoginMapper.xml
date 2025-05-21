@@ -21,13 +21,53 @@
 		select email from member where id=#{id}
 	</select>
 	
+	<!--비밀번호 사용 이력이 있는지 조회-->
+	<select id="selectId" resultType="string" parameterType="string">
+		SELECT id FROM pw_history WHERE id=#{id} AND pw=#{pw}
+	</select>
+	
+	<!--아이디에 맞는 비밀번호 조회-->
+	<select id="selectPwById" resultType="string" parameterType="string">
+		select pw from member where id=#{id}
+	</select>
+	
+	<!--비밀번호 변경 이력이 있는 아이디 조회-->
+	<select id="findIdList" resultType="com.example.schedule.dto.PwHistory">
+		SELECT distinct id FROM pw_history
+	</select>
+
+	<!--비밀번호 변경이력 개수 조회-->
+	<select id="countId" parameterType="string">
+		SELECT COUNT(*) FROM pw_history WHERE id=#{id}
+	</select>
+	
+	<!--오래된 변경내역 조회-->
+	<select id="selectOldNo" parameterType="string">
+		SELECT no FROM pw_history WHERE id=#{id} LIMIT 0,1
+	</select>
+	
 	<!--로그인 시 로그인기록-->
 	<insert id="insertLoginHistory" parameterType="com.example.schedule.dto.Member">
 		insert into login_history(id) VALUES(#{id})
+	</insert>
+	
+	<!--비밀번호변경시 기록-->
+	<insert id="insertPwHistory" parameterType="com.example.schedule.dto.Member">
+		insert into pw_history(id,pw) VALUES(#{id},#{pw})
 	</insert>
 	
 	<!--휴면계정 전환-->
 	<update id="updateActive" parameterType="com.example.schedule.dto.Member">
 		UPDATE member SET ACTIVE ='OFF' WHERE id= #{id}
 	</update>
+	
+	<!--비밀번호 변경-->
+	<update id="updatePw" parameterType="com.example.schedule.dto.Member">
+		UPDATE member SET pw =#{pw} WHERE id= #{id}
+	</update>
+	
+	<!--오래된 변경내역 삭제-->
+	<delete id="deleteOldNo">
+		DELETE FROM pw_history WHERE NO = #{no}
+	</delete>
 </mapper>
