@@ -12,6 +12,7 @@
 	<h1>LoginHistory</h1>
 	${loginInfo.id }님 반갑습니다.
 	<a href="/logout">로그아웃</a>
+	<a href="/updatePw">비밀번호 변경</a>
 	<table border="1">
 		<tr>
 			<th>NO</th>
