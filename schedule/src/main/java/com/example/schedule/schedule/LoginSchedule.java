@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.schedule.dto.LoginHistory;
 import com.example.schedule.dto.Member;
+import com.example.schedule.dto.PwHistory;
 import com.example.schedule.service.ILoginService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,20 @@ public class LoginSchedule {
 			msg.setText("1년간 접속하지 않아 "+member.getId()+" 아이디가 휴면계정 처리되었습니다.");
 			
 			javaMailSender.send(msg);
+		}
+	}
+	
+	@Scheduled(cron= "0 0 0 1 * *")
+	public void PwHistorySchedule() {
+		log.info("변경이력 삭제");
+		List<PwHistory> list = loginService.findIdList();
+		
+		for(PwHistory ph : list) {
+			int count = loginService.countId(ph.getId());
+			while(count>5) {
+				loginService.deleteOldNo(loginService.selectOldNo(ph.getId()));
+				count = loginService.countId(ph.getId());
+			}
 		}
 	}
 }
