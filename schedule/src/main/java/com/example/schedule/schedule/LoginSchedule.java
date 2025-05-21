@@ -20,7 +20,7 @@ public class LoginSchedule {
 	@Autowired ILoginService loginService;
 	@Autowired JavaMailSender javaMailSender;
 	
-	@Scheduled(cron = "0 3 16 * * *")
+	@Scheduled(cron = "59 59 23 23 1 *")
 	public void LoginSchedule() {
 		log.info("휴면계정 변경 실행");
 		List<LoginHistory> list = loginService.selectIdByDate();
