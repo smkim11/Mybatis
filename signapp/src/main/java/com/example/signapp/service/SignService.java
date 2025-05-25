@@ -4,13 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.signapp.dto.Document;
 import com.example.signapp.dto.Employee;
+import com.example.signapp.dto.Page;
 import com.example.signapp.dto.SignForm;
 import com.example.signapp.mapper.SignMapper;
 
@@ -22,12 +25,25 @@ import lombok.extern.slf4j.Slf4j;
 public class SignService {
 	@Autowired SignMapper signMapper;
 	
+	// 로그인
+	public Employee login(Employee employee) {
+		return signMapper.login(employee);
+	}
+	
 	// 아이디 중복 확인
 	public String searchId(String id) {
 		return signMapper.searchId(id);
 	}
 	
+	// 문서 전체 개수
+	public int documentCount() {
+		return signMapper.documentCount();
+	}
 	
+	// 문서 리스트 
+	public List<Document> documentList(Page page){
+		return signMapper.documentList(page);
+	}
 	// 회원가입
 	public void signUp(Employee employee) {
 		signMapper.signUp(employee);
