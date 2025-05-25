@@ -22,6 +22,7 @@
 			</tr>
 		</table>
 		<button type="button" id="btn">로그인</button>
+		<a href="/signup">회원가입</a>
 	</form>
 	<script>
 		$('#btn').click(function(){
