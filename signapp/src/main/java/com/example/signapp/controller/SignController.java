@@ -64,8 +64,8 @@ public class SignController {
 	
 	// 문서 상세 페이지
 	@GetMapping("/docOne")
-	public String docOne(int documentNo) {
-		
+	public String docOne(Model model, int documentNo) {
+		model.addAttribute("document",signService.documentOne(documentNo));
 		return "docOne";
 	}
 	
