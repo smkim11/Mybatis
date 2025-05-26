@@ -17,4 +17,5 @@ public interface SignMapper {
 	Employee login(Employee employee);
 	List<Document> documentList(Page page);
 	int documentCount();
+	Document documentOne(int documentNo);
 }

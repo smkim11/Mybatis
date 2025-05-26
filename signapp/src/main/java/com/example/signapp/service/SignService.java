@@ -44,6 +44,12 @@ public class SignService {
 	public List<Document> documentList(Page page){
 		return signMapper.documentList(page);
 	}
+	
+	// 문서 상세보기
+	public Document documentOne(int documentNo) {
+		return signMapper.documentOne(documentNo);
+	}
+	
 	// 회원가입
 	public void signUp(Employee employee) {
 		signMapper.signUp(employee);

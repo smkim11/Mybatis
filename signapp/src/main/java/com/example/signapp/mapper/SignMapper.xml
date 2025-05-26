@@ -22,6 +22,10 @@
 		select count(*) from document
 	</select>
 	
+	<!--문서 상세보기-->
+	<select id="documentOne" resultType="com.example.signapp.dto.Document">
+		select document_no documentNo, title, content, writer from document where document_no=#{documentNo}
+	</select>
 	<!--회원가입-->
 	<insert id="signUp" parameterType="com.example.signapp.dto.Employee">
 		insert into employee(name, level, id, pw) values(#{name}, #{level}, #{id}, #{pw})
