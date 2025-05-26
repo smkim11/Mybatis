@@ -29,8 +29,8 @@ ${loginInfo.name}님
 		</tr>
 		<c:forEach var="list" items="${list}">
 			<tr>
-				<td><a href="/docOne?documentNo=${list.documentNo }">${list.documentNo }</a></td>
-				<td>${list.title }</td>
+				<td>${list.documentNo }</td>
+				<td><a href="/docOne?documentNo=${list.documentNo }">${list.title }</a></td>
 				<td>${list.writer }</td>
 			</tr>
 		</c:forEach>
