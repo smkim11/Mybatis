@@ -20,8 +20,7 @@ public class SignRest {
 	public String addSign(SignForm signForm) {
 		log.info(signForm.toString());
 		// service 통해서 이미지 저장 - mapper 통해서 db저장
-		signService.addSign(signForm);
-		return "결제 완료";
+		return signService.addSign(signForm);
 	}
 	
 	@GetMapping("/useId/{id}")
@@ -30,5 +29,15 @@ public class SignRest {
 			return "no";
 		}
 		return "yes";
+	}
+	
+	@PostMapping("/signLevel2/{signImg}/{documentNo}")
+	public void signLevel2(@PathVariable String signImg, @PathVariable String documentNo) {
+		signService.updateSignLevel2(signImg, documentNo);
+	}
+	
+	@PostMapping("/signLevel3/{signImg}/{documentNo}")
+	public void signLevel3(@PathVariable String signImg, @PathVariable String documentNo) {
+		signService.updateSignLevel3(signImg, documentNo);
 	}
 }
