@@ -11,16 +11,11 @@
 <body>
 ${loginInfo.name}님 
 <a href="/logout">로그아웃</a>
-	<table border="1">
-		<tr>
-			<td><a href="">결제1</a></td><!-- Level 3 -->
-			<td><a href="/signLevel3">결제2</a></td><!-- Level 2 -->
-		</tr>
-	</table>
 	
-	<div>
-		문서내용 <!-- Level 1 -->
-	</div>
+	<h1>문서 리스트</h1>
+	<c:if test="${loginInfo.level == 1 }">
+		<a href="/addDoc">문서작성</a>
+	</c:if>
 	<table border="1">
 		<tr>
 			<th>문서번호</th>
