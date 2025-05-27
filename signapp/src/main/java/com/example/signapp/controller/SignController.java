@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.signapp.dto.Document;
 import com.example.signapp.dto.Employee;
 import com.example.signapp.dto.Page;
 import com.example.signapp.service.SignService;
@@ -69,10 +70,34 @@ public class SignController {
 		return "docOne";
 	}
 	
-	// 싸인페이지
-	@GetMapping("/signLevel3")
-	public String signLevel3() {
-		return "signLevel3";
+	// 문서 추가 
+	@GetMapping("/addDoc")
+	public String addDoc() {
+		return "addDoc";
 	}
 	
+	@PostMapping("/addDoc")
+	public String addDoc(Document document) {
+		signService.insertDocument(document);
+		return "redirect:/docView";
+	}
+	
+	// 문서 수정 (결제 안했을때 작성자만 수정)
+	@GetMapping("/updateDoc")
+	public String updateDoc(Model model, int documentNo) {
+		if(signService.documentOne(documentNo).getSignLevel2() == null
+		&& signService.documentOne(documentNo).getSignLevel3() == null) {
+			model.addAttribute("doc", signService.documentOne(documentNo));
+			return "updateDoc";
+		}
+		
+		return "redirect:/docOne?documentNo="+documentNo;
+	}
+	
+	@PostMapping("/updateDoc")
+	public String updateDoc(Document document) {
+		return "redirect:/docOne?documentNo="+document.getDocumentNo();
+	}
+	
+	// 문서 삭제 (결제 안했을때)
 }
