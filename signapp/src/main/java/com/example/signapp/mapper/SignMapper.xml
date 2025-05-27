@@ -3,7 +3,7 @@
 <mapper namespace="com.example.signapp.mapper.SignMapper">
 	<!--로그인-->
 	<select id="login" resultType="com.example.signapp.dto.Employee" parameterType="com.example.signapp.dto.Employee">
-		select employee_no employeeNo, name, id, level from employee where id=#{id} and pw=#{pw}	
+		select employee_no employeeNo, name, id, level, signImg from employee where id=#{id} and pw=#{pw}	
 	</select>
 	
 	<!--중복 아이디 확인-->
@@ -24,10 +24,26 @@
 	
 	<!--문서 상세보기-->
 	<select id="documentOne" resultType="com.example.signapp.dto.Document">
-		select document_no documentNo, title, content, writer from document where document_no=#{documentNo}
+		select document_no documentNo, title, content, writer, signLevel2, signLevel3 from document where document_no=#{documentNo}
 	</select>
+	
 	<!--회원가입-->
 	<insert id="signUp" parameterType="com.example.signapp.dto.Employee">
-		insert into employee(name, level, id, pw) values(#{name}, #{level}, #{id}, #{pw})
+		insert into employee(name, level, id, pw, signImg) values(#{name}, #{level}, #{id}, #{pw}, #{signImg})
 	</insert>
+	
+	<!--문서 작성-->
+	<insert id="insertDocument" parameterType="com.example.signapp.dto.Document">
+		insert into document(title, content, writer) values(#{title}, #{content}, #{writer})
+	</insert>
+	
+	<!--Level2 결제-->
+	<update id="updateSignLevel2" parameterType="string">
+		UPDATE document SET signLevel2 = #{signImg} WHERE document_no= #{documentNo}	
+	</update>
+	
+	<!--Level3 결제-->
+	<update id="updateSignLevel3" parameterType="string">
+		UPDATE document SET signLevel3 = #{signImg} WHERE document_no= #{documentNo}	
+	</update>
 </mapper>

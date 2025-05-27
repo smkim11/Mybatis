@@ -18,4 +18,8 @@ public interface SignMapper {
 	List<Document> documentList(Page page);
 	int documentCount();
 	Document documentOne(int documentNo);
+	void updateSignLevel2(String signImg, String documentNo);
+	void updateSignLevel3(String signImg, String documentNo);
+	void insertDocument(Document document);
+	
 }

@@ -54,9 +54,24 @@ public class SignService {
 	public void signUp(Employee employee) {
 		signMapper.signUp(employee);
 	}
+	
+	// 문서작성
+	public void insertDocument(Document document) {
+		signMapper.insertDocument(document);
+	}
 
+	// Level2 결제
+	public void updateSignLevel2(String signImg, String documentNo) {
+		signMapper.updateSignLevel2(signImg, documentNo);
+	}
 
-	public boolean addSign(SignForm signForm) {
+	// Level3 결제
+	public void updateSignLevel3(String signImg, String documentNo) {
+		signMapper.updateSignLevel3(signImg, documentNo);
+	}
+	
+	// 개인 서명 파일로 저장
+	public String addSign(SignForm signForm) {
 		// 0) signImg 파일이름 생성
 		String ext = ".png"; // data:image/png;Base64,... 에서 png 구해서 ext에 입력
 		String filename = UUID.randomUUID().toString().replace("-","")+ext;
@@ -81,12 +96,7 @@ public class SignService {
 				e.printStackTrace();
 			}
 		}
-
-		// 2) mapper 호출
-		// signMapper.addSign(signForm);
-		
-		return true;
-	
+		return filename;
 	}
 
 }
