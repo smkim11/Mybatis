@@ -9,4 +9,5 @@ public class Employee {
 	private int level;
 	private String id;
 	private String pw;
+	private String signImg;
 }
