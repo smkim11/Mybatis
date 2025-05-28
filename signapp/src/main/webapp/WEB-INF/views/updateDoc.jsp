@@ -11,6 +11,7 @@
 <h1>문서 수정</h1>
 <form method="post" action="/updateDoc" id="updateDocForm">
 		<table border="1">
+		<input type="hidden" name="documentNo" value="${doc.documentNo}">
 			<tr>
 				<th>제목</th>
 				<td><input type="text" id="title" name="title" value="${doc.title}"></td>
