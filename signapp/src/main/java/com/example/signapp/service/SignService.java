@@ -35,6 +35,11 @@ public class SignService {
 		return signMapper.searchId(id);
 	}
 	
+	// 비밀번호 검색
+	public String searchPw(String writer) {
+		return signMapper.searchPw(writer);
+	}
+	
 	// 문서 전체 개수
 	public int documentCount() {
 		return signMapper.documentCount();
@@ -68,6 +73,16 @@ public class SignService {
 	// Level3 결제
 	public void updateSignLevel3(String signImg, String documentNo) {
 		signMapper.updateSignLevel3(signImg, documentNo);
+	}
+	
+	// 문서 수정
+	public void updateDocument(Document document) {
+		signMapper.updateDocument(document);
+	}
+	
+	// 문서 삭제
+	public void deleteDocument(int documentNo) {
+		signMapper.deleteDocument(documentNo);
 	}
 	
 	// 개인 서명 파일로 저장

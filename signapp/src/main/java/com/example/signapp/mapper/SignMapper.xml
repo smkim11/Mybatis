@@ -27,6 +27,11 @@
 		select document_no documentNo, title, content, writer, signLevel2, signLevel3 from document where document_no=#{documentNo}
 	</select>
 	
+	<!--비밀번호 검색-->
+	<select id="searchPw" resultType="string" parameterType="string">
+		SELECT pw FROM employee WHERE NAME = #{writer}
+	</select>
+	
 	<!--회원가입-->
 	<insert id="signUp" parameterType="com.example.signapp.dto.Employee">
 		insert into employee(name, level, id, pw, signImg) values(#{name}, #{level}, #{id}, #{pw}, #{signImg})
@@ -46,4 +51,14 @@
 	<update id="updateSignLevel3" parameterType="string">
 		UPDATE document SET signLevel3 = #{signImg} WHERE document_no= #{documentNo}	
 	</update>
+	
+	<!--문서 수정-->
+	<update id="updateDocument" parameterType="com.example.signapp.dto.Document">
+		UPDATE document SET title=#{title}, content=#{content} WHERE document_no=#{documentNo}
+	</update>
+	
+	<!--문서 삭제-->
+	<delete id="deleteDocument">
+		DELETE FROM document WHERE document_no=#{documentNo}
+	</delete>
 </mapper>

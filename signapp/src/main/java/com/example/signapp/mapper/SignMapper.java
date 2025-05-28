@@ -21,5 +21,7 @@ public interface SignMapper {
 	void updateSignLevel2(String signImg, String documentNo);
 	void updateSignLevel3(String signImg, String documentNo);
 	void insertDocument(Document document);
-	
+	void updateDocument(Document document);
+	void deleteDocument(int documentNo);
+	String searchPw(String writer);
 }
