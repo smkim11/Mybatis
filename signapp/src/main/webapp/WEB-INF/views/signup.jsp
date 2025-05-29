@@ -11,49 +11,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	<h1>회원가입</h1>
-	<form method="post" action="/signup" id="signupForm">
-		<table border="1">
-			<tr>
-				<th>이름</th>
-				<td><input type="text" name="name" id="name"></td>
-			</tr>
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" name="id" id="id"></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="pw" id="pw"></td>
-			</tr>
-			<tr>
-				<th>비밀번호확인</th>
-				<td><input type="password" name="pw2" id="pw2"></td>
-			</tr>
-			<tr>
-				<th>레벨</th>
-				<td>
-				<select id="level" name="level">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<th>서명</th>
-				<td>
-					<canvas style="border : 1px solid #000000"></canvas>
-					<button type="button" id="btnClear">삭제</button>
-					<button type="button" id="btnSign">등록</button>
-					<input type="hidden" id="signImg" name="signImg">
-				</td>
-			</tr>
-		</table>
-		<button type="button" id="btn">가입</button>
-	</form>
-	
+<body class="bg-light p-4">
+	<div class="container bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
+		<h1 class="text-center mb-4">회원가입</h1>
+		<form method="post" action="/signup" id="signupForm">
+			<table class="table table-bordered align-middle">
+				<tr>
+					<th class="text-center">이름</th>
+					<td><input type="text" name="name" id="name" class="form-control"></td>
+				</tr>
+				<tr>
+					<th class="text-center">아이디</th>
+					<td><input type="text" name="id" id="id" class="form-control"></td>
+				</tr>
+				<tr>
+					<th class="text-center">비밀번호</th>
+					<td><input type="password" name="pw" id="pw" class="form-control"></td>
+				</tr>
+				<tr>
+					<th class="text-center">비밀번호확인</th>
+					<td><input type="password" name="pw2" id="pw2" class="form-control"></td>
+				</tr>
+				<tr>
+					<th class="text-center">레벨</th>
+					<td>
+						<select id="level" name="level" class="form-select">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+				    <th class="text-center">서명</th>
+				    <td>
+				        <canvas id="signCanvas" width="500" height="200" style="border: 1px solid #000000; width: 100%;"></canvas>
+				        <div class="mt-2 d-flex gap-2">
+				            <button type="button" id="btnClear" class="btn btn-secondary btn-sm">삭제</button>
+				            <button type="button" id="btnSign" class="btn btn-primary btn-sm">등록</button>
+				        </div>
+				        <input type="hidden" id="signImg" name="signImg">
+				    </td>
+				</tr>
+			</table>
+			<div class="text-center">
+				<button type="button" id="btn" class="btn btn-success">가입</button>
+			</div>
+		</form>
+	</div>
 	<script>
 		// 캔버스에 사인 후 객체로 받는 SignaturePad 생성자
 		// SignaturePad API설명은 https://github.com/szimek/signature_pad 페이지 readme파일 참고

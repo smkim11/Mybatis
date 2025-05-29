@@ -4,30 +4,37 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/signStyle.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>문서 수정</title>
 </head>
 <body>
-<h1>문서 수정</h1>
-<form method="post" action="/updateDoc" id="updateDocForm">
-		<table border="1">
+<div class="container mt-5">
+	<h1 class="mb-4">문서 수정</h1>
+	<form method="post" action="/updateDoc" id="updateDocForm" class="border p-4 rounded bg-light shadow-sm">
 		<input type="hidden" name="documentNo" value="${doc.documentNo}">
-			<tr>
-				<th>제목</th>
-				<td><input type="text" id="title" name="title" value="${doc.title}"></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea cols="50" rows="10" id="content" name="content">${doc.content }</textarea></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><input type="text" id="writer" name="writer" value="${doc.writer }" readonly></td>
-			</tr>
-		</table>
-		<button type="button" id="btn">수정</button>
+		
+		<div class="mb-3">
+			<label for="title" class="form-label fw-bold">제목</label>
+			<input type="text" class="form-control" id="title" name="title" value="${doc.title}">
+		</div>
+		
+		<div class="mb-3">
+			<label for="content" class="form-label fw-bold">내용</label>
+			<textarea cols="50" rows="10" class="form-control" id="content" name="content">${doc.content}</textarea>
+		</div>
+		
+		<div class="mb-3">
+			<label for="writer" class="form-label fw-bold">작성자</label>
+			<input type="text" class="form-control" id="writer" name="writer" value="${doc.writer}" readonly>
+		</div>
+		
+		<div class="text-center mt-3">
+			<button type="button" class="btn btn-success btn-sm w-25 d-inline-block" id="btn">수정</button>
+		</div>
 	</form>
-</body>
+</div>
 <script>
 	$('#btn').click(function(){
 		if($('#title').val() != '' && $('#content').val() != '' && $('#writer').val() != ''){
@@ -37,4 +44,5 @@
 		}
 	});
 </script>
+</body>
 </html>
