@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SignRest {
 	@Autowired SignService signService;
 	
+	// 서명 추가
 	@PostMapping("/addSign")
 	public String addSign(SignForm signForm) {
 		log.info(signForm.toString());
@@ -23,6 +24,7 @@ public class SignRest {
 		return signService.addSign(signForm);
 	}
 	
+	// 아이디 조회
 	@GetMapping("/useId/{id}")
 	public String useId(@PathVariable String id) {
 		if(signService.searchId(id) != null) {
@@ -31,11 +33,13 @@ public class SignRest {
 		return "yes";
 	}
 	
+	// 레벨2 결제
 	@PostMapping("/signLevel2/{signImg}/{documentNo}")
 	public void signLevel2(@PathVariable String signImg, @PathVariable String documentNo) {
 		signService.updateSignLevel2(signImg, documentNo);
 	}
 	
+	// 레벨3 결제
 	@PostMapping("/signLevel3/{signImg}/{documentNo}")
 	public void signLevel3(@PathVariable String signImg, @PathVariable String documentNo) {
 		signService.updateSignLevel3(signImg, documentNo);
