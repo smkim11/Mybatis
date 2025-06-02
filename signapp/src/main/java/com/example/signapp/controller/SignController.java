@@ -76,7 +76,7 @@ public class SignController {
 	public String addDoc() {
 		return "addDoc";
 	}
-	
+	// 문서 추가 실행
 	@PostMapping("/addDoc")
 	public String addDoc(Document document) {
 		signService.insertDocument(document);
@@ -130,6 +130,7 @@ public class SignController {
 		return "redirect:/docOne?documentNo="+documentNo;
 	}
 	
+	// 문서 삭제 실행
 	@PostMapping("/deleteDoc")
 	public String deleteDoc(@RequestParam int documentNo, @RequestParam String pw
 							,@RequestParam String writer, RedirectAttributes redirectAttributes) {
