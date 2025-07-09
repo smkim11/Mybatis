@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ss.mapper.UserMapper">
+	<select id="selectByUsername" resultType="com.example.ss.domain.UserDomain" parameterType="String">
+		select username, password, role from user where username=#{username}
+	</select>
+	
+	<select id="selectUser" resultType="com.example.ss.domain.UserDetailDomain" parameterType="String">
+		select username, phone, email, birth from user_detail where username=#{username}
+	</select>
+	
+	<insert id="insertUser" parameterType="com.example.ss.domain.UserDomain">
+		insert into user(username, password, role) values(#{username},#{password},#{role})
+	</insert>
+	
+	<insert id="insertUserDetail" parameterType="com.example.ss.domain.UserDetailDomain">
+		insert into user_detail(username,phone,email,birth) values(#{username}, #{phone}, #{email}, #{birth})
+	</insert>
+	
+	<update id="update" parameterType="com.example.ss.domain.UserDetailDomain">
+		update user_detail set phone=#{phone}, email=#{email}, birth=#{birth} where username=#{username}
+	</update>
+	
+	<delete id="deleteUserDetail" parameterType="String">
+		delete from user_detail where username=#{username}
+	</delete>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from user where username=#{username}
+	</delete>
+</mapper>
