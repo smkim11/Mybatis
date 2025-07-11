@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vrs.mapper.ReservationMapper">
+	<select id="roomList" resultType="map" parameterType="com.example.vrs.dto.Reservation">
+		SELECT r.room_name roomName, r.room_no roomNo,r.room_limit roomLimit,
+		case when rs.room_no IS NOT NULL
+		then '예약불가' ELSE '예약가능' END status
+		FROM room r left JOIN reservation rs ON r.room_no = rs.room_no
+		and rs.reservation_date=#{reservationDate} and rs.reservation_option=#{reservationOption}
+	</select>
+	
+	<select id="selectReservationNo" parameterType="com.example.vrs.dto.Reservation">
+		SELECT reservation_no reservationNo FROM reservation 
+		WHERE room_no=#{roomNo} AND reservation_date=#{reservationDate} AND reservation_option=#{reservationOption}
+	</select>
+	
+	<insert id="insertReservation" parameterType="com.example.vrs.dto.Reservation">
+		insert into reservation(room_no,reservation_date,reservation_option,reservation_name,reservation_id,reservation_count,provider)
+		values(#{roomNo},#{reservationDate},#{reservationOption},#{reservationName},#{reservationId},#{reservationCount},#{provider})
+	</insert>
+	
+	<insert id="insertPay" parameterType="com.example.vrs.dto.Pay">
+		insert into pay(reservation_no,amount,pay_method)
+		values(#{reservationNo},#{amount},#{payMethod})
+	</insert>
+</mapper>
