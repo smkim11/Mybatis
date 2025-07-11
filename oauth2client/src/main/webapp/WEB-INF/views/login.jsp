@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>식당 예약</h1>
 	<div>
 		<a class="naver" href="/oauth2/authorization/naver">네이버 로그인</a>
 	</div>

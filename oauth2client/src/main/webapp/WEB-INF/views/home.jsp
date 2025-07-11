@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>HOME</h1>
-	<c:if test="${name == 'anonymousUser' }">
-		<a href="/login">로그인</a>
-	</c:if>
-	<c:if test="${name != 'anonymousUser' }">
-		${name }님 반갑습니다.<br>
-		<a href="/myPage">마이페이지</a>
-	</c:if>
+	<h1>테이블 예약1</h1>
+	<div>
+		예약날짜:<input type="date" name="reservationDate"> 
+		시간<select name="reservationOption">
+				<option value="AM">오전</option>
+				<option value="PM">오후</option>
+			</select>
+	</div>
 </body>
 </html>
